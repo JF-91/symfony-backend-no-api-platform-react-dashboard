@@ -45,6 +45,11 @@ class NewsService
             throw new \Exception('News not found');
         }
 
-        return $this->serializerService->serialize(NewsReadDto::class, 'json', ['groups' => 'news:read']);
+        $newsDto = new NewsReadDto();
+        $newsDto->id = $news->getId();
+        $newsDto->title = $news->getTitle();
+        $newsDto->content = $news->getContent();
+
+        return $this->serializerService->serialize($newsDto, 'json', ['groups' => 'news:read']);
     }
 }
