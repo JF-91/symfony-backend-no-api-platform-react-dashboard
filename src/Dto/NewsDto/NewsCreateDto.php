@@ -5,7 +5,7 @@ namespace App\Dto\NewsDto;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class NewsUpdateDto
+class NewsCreateDto
 {
     public const GROUP_NEWS_WRITE = 'news:write';
 
@@ -19,9 +19,6 @@ class NewsUpdateDto
     #[Assert\Length(min: 3)]
     #[Groups([self::GROUP_NEWS_WRITE])]
     public ?string $content;
-
-    #[Groups([self::GROUP_NEWS_WRITE])]
-    public ?bool $isPublished;
 
     
 
@@ -57,24 +54,6 @@ class NewsUpdateDto
     public function setContent(?string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of isPublished
-     */
-    public function isIsPublished(): ?bool
-    {
-        return $this->isPublished;
-    }
-
-    /**
-     * Set the value of isPublished
-     */
-    public function setIsPublished(?bool $isPublished): self
-    {
-        $this->isPublished = $isPublished;
 
         return $this;
     }

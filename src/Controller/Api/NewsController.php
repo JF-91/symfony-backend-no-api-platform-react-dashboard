@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
-class PromotionsController extends AbstractController
+class NewsController extends AbstractController
 {
-    #[Route('/promotions', name: 'app_promotions')]
+    #[Route('/news', name: 'app_news')]
     public function index(): JsonResponse
     {
         return $this->json([
             'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/PromotionsController.php',
+            'path' => 'src/Controller/NewsController.php',
         ]);
     }
 }
