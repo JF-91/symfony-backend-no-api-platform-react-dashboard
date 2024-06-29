@@ -128,4 +128,18 @@ class Product
         return $this;
     }
 
+    public function getCategoryName(): ?string
+    {
+        return $this->productCategory ? $this->productCategory->getCategoryName() : null;
+    }
+
+   public function setCategoryName(?string $categoryName): static
+    {
+        if ($this->productCategory) {
+            $this->productCategory->setCategoryName($categoryName);
+        }
+
+        return $this;
+    }
+
 }

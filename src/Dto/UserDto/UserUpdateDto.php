@@ -2,6 +2,7 @@
 
 namespace App\Dto\UserDto;
 
+use App\Entity\ProductCategory;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 class UserUpdateDto
@@ -30,6 +31,9 @@ class UserUpdateDto
     #[Groups([self::GROUP_USER_WRITE])]
     public string $lastName;
 
+    #[Assert\NotBlank]
+    #[Groups([self::GROUP_USER_WRITE])]
+    public ProductCategory $productCategory;
     
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Dto\ProductDto\ProductCreateDto;
 use App\Dto\ProductDto\ProductReadDto;
 use App\Dto\ProductDto\ProductUpdateDto;
 use App\Entity\Product;
@@ -17,6 +18,21 @@ class ProductService
     {
         $this->entityManager = $entityManager;
         $this->serializer = $serializer;
+    }
+
+    public function createProduct (string $data): void
+    {
+        $productCreateDTO = $this->serializer->deserialize($data, ProductCreateDto::class, 'json', ['groups' => 'product:write']);
+
+        $product = new Product();
+        $product->setName($productCreateDTO->name);
+        $product->setDescription($productCreateDTO->description);
+        $product->setPrice($productCreateDTO->price);
+        $product->setIsPublished($productCreateDTO->isPublished);
+        $product->setProductCategory($productCreateDTO->productCategoryId);
+
+        $this->entityManager->persist($product);
+        $this->entityManager->flush();
     }
 
     public function updateProduct(int $id, string $data): void
